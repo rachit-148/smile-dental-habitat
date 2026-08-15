@@ -442,13 +442,59 @@ footer a:hover { color: var(--accent); }
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0 -6px 24px rgba(0,0,0,.1);
 }
-.mobile-bar a {
+.mobile-bar a,
+.mobile-bar button {
   padding: .9rem .4rem; text-align: center; text-decoration: none;
   font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--text); border-left: 1px solid var(--line); font-weight: 600;
 }
-.mobile-bar a:first-child { border-left: none; }
-.mobile-bar a svg { width: 18px; height: 18px; margin: 0 auto .25rem; display: block; stroke: var(--accent); }
+.mobile-bar button {
+  background: none; border-top: none; border-right: none; border-bottom: none;
+  font-family: inherit; cursor: pointer; width: 100%;
+}
+.mobile-bar a:first-child,
+.mobile-bar button:first-child { border-left: none; }
+.mobile-bar a svg,
+.mobile-bar button svg { width: 18px; height: 18px; margin: 0 auto .25rem; display: block; stroke: var(--accent); }
+
+/* ---------- clinic action sheet ---------- */
+.sheet-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(0,0,0,.5); backdrop-filter: saturate(120%) blur(2px);
+  display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; transition: opacity .25s ease;
+}
+.sheet-overlay.open { opacity: 1; }
+.sheet-overlay[hidden] { display: none; }
+.sheet {
+  width: 100%; max-width: 520px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--line); border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  padding: .5rem 1rem calc(1.1rem + env(safe-area-inset-bottom));
+  transform: translateY(101%); transition: transform .32s cubic-bezier(.2,.7,.3,1);
+  box-shadow: 0 -12px 44px rgba(0,0,0,.32);
+}
+.sheet-overlay.open .sheet { transform: none; }
+.sheet-grip { width: 40px; height: 4px; border-radius: 4px; background: var(--line); margin: .5rem auto .3rem; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; padding: .4rem .2rem .9rem; }
+.sheet-title { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; }
+.sheet-close {
+  background: none; border: none; color: var(--text-soft); cursor: pointer;
+  font-size: 1.6rem; line-height: 1; width: 2rem; height: 2rem; border-radius: 50%;
+}
+.sheet-close:hover { color: var(--text); background: var(--bg-2); }
+.sheet-body { display: grid; gap: .6rem; }
+.sheet-opt {
+  display: flex; flex-direction: column; gap: .15rem;
+  padding: .95rem 1.1rem; text-decoration: none; color: var(--text);
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+  transition: border-color .2s, transform .1s;
+}
+.sheet-opt:active { transform: scale(.99); }
+.sheet-opt:hover { border-color: var(--accent); }
+.sheet-opt-name { font-weight: 600; font-size: 1rem; }
+.sheet-opt-sub { font-size: .82rem; color: var(--text-soft); }
 
 /* ---------- page header ---------- */
 .page-head { padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--line); }
