@@ -438,9 +438,9 @@ footer a:hover { color: var(--accent); }
 .mobile-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 70;
   display: none; grid-template-columns: repeat(3, 1fr);
-  background: var(--surface); border-top: 1px solid var(--line);
+  background: var(--bg-2); border-top: 2px solid var(--gold);
   padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -6px 24px rgba(0,0,0,.1);
+  box-shadow: 0 -2px 16px rgba(201,162,74,.20), 0 -10px 30px rgba(0,0,0,.28);
 }
 .mobile-bar a,
 .mobile-bar button {
@@ -456,6 +456,13 @@ footer a:hover { color: var(--accent); }
 .mobile-bar button:first-child { border-left: none; }
 .mobile-bar a svg,
 .mobile-bar button svg { width: 18px; height: 18px; margin: 0 auto .25rem; display: block; stroke: var(--accent); }
+
+/* primary action — solid gold Call button */
+.mobile-bar button[data-sheet="call"] {
+  background: var(--gold); color: var(--ink); border-left: none;
+}
+.mobile-bar button[data-sheet="call"] svg { stroke: var(--ink); }
+.mobile-bar button[data-sheet="call"]:active { background: var(--gold-soft); }
 
 /* ---------- clinic action sheet ---------- */
 .sheet-overlay {
